@@ -75,7 +75,7 @@ const Contact = ({ content }) => {
       id="contact"
       ref={ref}
       variants={variants}
-      animate={onScreen ? "visible" : "hidden"}
+      animate={"visible"}
     >
       <StyledContentWrapper>
         <h3>{frontmatter.title}</h3>

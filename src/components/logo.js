@@ -1,9 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
-
 import { siteShortTitle } from "../../config"
-
+import { Trans } from "react-i18next"
 const StyledLogo = styled.div`
   position: relative;
   z-index: 13;
@@ -20,7 +19,7 @@ const StyledLogo = styled.div`
 
 const Logo = ({ size, color }) => (
   <StyledLogo color={color} size={size}>
-    {siteShortTitle}
+    <Trans>{siteShortTitle}</Trans>
   </StyledLogo>
 )
 

@@ -22,11 +22,10 @@ const StyledContentWrapper = styled(ContentWrapper)`
   && {
     width: 100%;
     height: 100%;
-    min-height: 60vh;
+    min-height: 45vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-bottom: 6rem;
     @media (min-width: ${({ theme }) => theme.breakpoints.sm}) {
       margin-bottom: 4rem;
     }
@@ -57,6 +56,7 @@ const StyledContentWrapper = styled(ContentWrapper)`
     .description {
       font-size: 1.125rem;
       margin-bottom: 2rem;
+      color: ${({ theme }) => theme.colors.subtext};
     }
   }
 `
@@ -137,7 +137,12 @@ const Hero = ({ content }) => {
           </div>
         </motion.div>
         <motion.div initial={{ opacity: 0, x: 20 }} animate={sControls}>
-          <Social fontSize=".95rem" padding=".3rem 1.25rem" width="auto" />
+          <Social
+            withIcon
+            fontSize=".95rem"
+            padding=".3rem 1.25rem"
+            width="auto"
+          />
         </motion.div>
       </StyledContentWrapper>
     </StyledSection>

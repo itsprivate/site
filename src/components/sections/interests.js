@@ -3,8 +3,7 @@ import PropTypes from "prop-types"
 import styled from "styled-components"
 import Img from "gatsby-image"
 import { motion, useAnimation } from "framer-motion"
-
-import { detectMobileAndTablet, isSSR } from "../../utils"
+import { openChat, detectMobileAndTablet, isSSR } from "../../utils"
 import { useOnScreen } from "../../hooks/"
 import ContentWrapper from "../../styles/contentWrapper"
 import Button from "../../styles/button"
@@ -42,60 +41,22 @@ const StyledContentWrapper = styled(ContentWrapper)`
 
 const StyledInterests = styled.div`
   display: grid;
-  /* Calculate how many columns are needed, depending on interests count */
-  grid-template-columns: repeat(
-    ${({ itemCount }) => Math.ceil(itemCount / 2)},
-    15.625rem
-  );
-  grid-template-rows: repeat(2, auto);
-  grid-auto-flow: column;
-  column-gap: 1rem;
-  row-gap: 1rem;
-  padding: 0 2.5rem 1.25rem 2.5rem;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  /* Workaround: https://stackoverflow.com/questions/38993170/last-margin-padding-collapsing-in-flexbox-grid-layout */
-  &::after {
-    content: "";
-    width: ${({ itemCount }) =>
-      Math.ceil(itemCount / 2) % 2 === 1 ? "17.125rem" : "2.5rem"};
-  }
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  grid-gap: 1rem;
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    grid-auto-flow: row;
-    grid-template-columns: repeat(3, 15.625rem);
-    overflow: visible;
-    padding: 0;
+    padding-right: 0;
+    padding-left: 0;
   }
-  /* Show scrollbar if desktop and wrapper width > viewport width */
-  @media (hover: hover) {
-    scrollbar-color: ${({ theme }) => theme.colors.scrollBar} transparent; // Firefox only
-    &::-webkit-scrollbar {
-      display: block;
-      -webkit-appearance: none;
-    }
-
-    &::-webkit-scrollbar:horizontal {
-      height: 0.8rem;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      border-radius: 8px;
-      border: 0.2rem solid ${({ theme }) => theme.colors.background};
-      background-color: ${({ theme }) => theme.colors.scrollBar};
-    }
-
-    &::-webkit-scrollbar-track {
-      background-color: ${({ theme }) => theme.colors.background};
-      border-radius: 8px;
+  padding-right: 2.5rem;
+  padding-left: 2.5rem;
+  .interest-wrapper {
+    width: 100%;
+    &:hover {
+      transform: scale(1.01);
     }
   }
-
   .interest {
-    width: 15.625rem;
+    min-width: 15.625rem;
     height: 3rem;
     display: flex;
     justify-content: flex-start;
@@ -110,11 +71,22 @@ const StyledInterests = styled.div`
   }
 `
 
+const StyledNote = styled.div`
+  padding: 1rem 2.5rem;
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    padding-right: 0;
+    padding-left: 0;
+  }
+`
+const StyledNoteText = styled.span`
+  color: ${({ theme }) => theme.colors.subtext};
+`
+const StyledNoteButton = styled.a`
+  color: ${({ theme }) => theme.colors.primary};
+`
 const Interests = ({ content }) => {
   const { exports, frontmatter } = content[0].node
-  const { shownItems, interests } = exports
-
-  const [shownInterests, setShownInterests] = useState(shownItems)
+  const { interests } = exports
 
   const ref = useRef()
   const onScreen = useOnScreen(ref)
@@ -123,60 +95,54 @@ const Interests = ({ content }) => {
   const bControls = useAnimation()
 
   useEffect(() => {
-    // If mobile or tablet, show all interests initially
-    // Otherwise interests.mdx will determine how many interests are shown
-    // (isSSR) is used to prevent error during gatsby build
-    if (!isSSR && detectMobileAndTablet(window.innerWidth)) {
-      setShownInterests(interests.length)
-    }
-  }, [interests])
-
-  useEffect(() => {
     const sequence = async () => {
-      if (onScreen) {
-        // i receives the value of the custom prop - can be used to stagger
-        // the animation of each "interest" element
-        await iControls.start(i => ({
-          opacity: 1,
-          scaleY: 1,
-          transition: { delay: i * 0.1 },
-        }))
-        await bControls.start({ opacity: 1, scaleY: 1 })
-      }
+      // i receives the value of the custom prop - can be used to stagger
+      // the animation of each "interest" element
+      await iControls.start(i => ({
+        opacity: 1,
+        scaleY: 1,
+        transition: { delay: i * 0.1 },
+      }))
+      await bControls.start({ opacity: 1, scaleY: 1 })
     }
     sequence()
-  }, [onScreen, shownInterests, iControls, bControls])
+  }, [iControls, bControls])
 
-  const showMoreItems = () => setShownInterests(shownInterests + 4)
+  const handleIssue = () => {
+    openChat()
+  }
 
   return (
-    <StyledSection id="interests">
+    <StyledSection id="sources">
       <StyledContentWrapper>
         <h3 className="section-title">{frontmatter.title}</h3>
         <StyledInterests itemCount={interests.length} ref={ref}>
-          {interests.slice(0, shownInterests).map(({ name, icon }, key) => (
-            <motion.div
-              className="interest"
-              key={key}
-              custom={key}
-              initial={{ opacity: 0, scaleY: 0 }}
-              animate={iControls}
+          {interests.map(({ name, icon, url }, key) => (
+            <a
+              href={url}
+              key={name}
+              className="interest-wrapper"
+              target="_blank"
+              rel="nofollow noopener noreferrer"
             >
-              <Img className="icon" fixed={icon.childImageSharp.fixed} /> {name}
-            </motion.div>
-          ))}
-          {shownInterests < interests.length && (
-            <motion.div initial={{ opacity: 0, scaleY: 0 }} animate={bControls}>
-              <Button
-                onClick={() => showMoreItems()}
-                type="button"
-                textAlign="left"
+              <motion.div
+                className="interest"
+                custom={key}
+                initial={{ opacity: 0, scaleY: 0 }}
+                animate={iControls}
               >
-                + Load more
-              </Button>
-            </motion.div>
-          )}
+                <Img className="icon" fixed={icon.childImageSharp.fixed} />{" "}
+                {name}
+              </motion.div>
+            </a>
+          ))}
         </StyledInterests>
+        <StyledNote>
+          <StyledNoteText>Want more sources?</StyledNoteText>{" "}
+          <StyledNoteButton onClick={handleIssue}>
+            Let us know.
+          </StyledNoteButton>
+        </StyledNote>
       </StyledContentWrapper>
     </StyledSection>
   )
@@ -188,7 +154,6 @@ Interests.propTypes = {
       node: PropTypes.shape({
         exports: PropTypes.shape({
           interests: PropTypes.array.isRequired,
-          shownItems: PropTypes.number.isRequired,
         }).isRequired,
         frontmatter: PropTypes.object.isRequired,
       }).isRequired,

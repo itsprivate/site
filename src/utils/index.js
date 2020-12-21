@@ -43,3 +43,8 @@ export const parseDate = date => {
       return "No publication date"
   }
 }
+export const openChat = () => {
+  if (typeof $crisp !== undefined) {
+    $crisp.push(["do", "chat:open"])
+  }
+}

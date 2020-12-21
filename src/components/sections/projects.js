@@ -13,6 +13,7 @@ import Underlining from "../../styles/underlining"
 import Button from "../../styles/button"
 import Icon from "../../components/icons"
 import { lightTheme, darkTheme } from "../../styles/theme"
+import { useLocalization } from "gatsby-theme-i18n"
 
 const StyledSection = styled.section`
   width: 100%;
@@ -199,7 +200,18 @@ const StyledProject = styled(motion.div)`
   }
 `
 
-const Projects = ({ content }) => {
+const Projects = ({ content: rawContent, pageContext: { locale } }) => {
+  const { defaultLang } = useLocalization()
+
+  let content = rawContent.filter(item => {
+    return item.node.fields.locale === locale
+  })
+  if (content.length === 0) {
+    content = rawContent.filter(item => {
+      return item.node.fields.locale === defaultLang
+    })
+  }
+
   const { darkMode } = useContext(Context).state
   const sectionDetails = content[0].node
   const projects = content.slice(1, content.length)
@@ -370,6 +382,9 @@ const Projects = ({ content }) => {
 }
 
 Projects.propTypes = {
+  pageContext: PropTypes.shape({
+    locale: PropTypes.string.isRequired,
+  }),
   content: PropTypes.arrayOf(
     PropTypes.shape({
       node: PropTypes.shape({

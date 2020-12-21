@@ -7,7 +7,7 @@ import IconMedium from "./medium"
 import IconGitHub from "./github"
 import IconBehance from "./behance"
 import IconExternal from "./external"
-
+import IconArrowRight from "./arrow-right"
 // Utility function to grab Icons by name
 const Icon = ({ name, color }) => {
   switch (name.toLowerCase()) {
@@ -23,6 +23,8 @@ const Icon = ({ name, color }) => {
       return <IconBehance color={color} />
     case "external":
       return <IconExternal color={color} />
+    case "arrow-right":
+      return <IconArrowRight color={color}></IconArrowRight>
     default:
       return null
   }

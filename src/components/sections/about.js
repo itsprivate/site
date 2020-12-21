@@ -4,7 +4,7 @@ import styled from "styled-components"
 import Img from "gatsby-image"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import { motion, useAnimation } from "framer-motion"
-
+import { Trans } from "react-i18next"
 import { useOnScreen } from "../../hooks/"
 import Context from "../../context/"
 import ContentWrapper from "../../styles/contentWrapper"
@@ -79,8 +79,8 @@ const About = ({ content }) => {
   // Only trigger animations if the intro is done or disabled
   useEffect(() => {
     if (isIntroDone) {
-      if (tOnScreen) tControls.start({ opacity: 1, y: 0 })
-      if (iOnScreen) iControls.start({ opacity: 1, x: 0 })
+      tControls.start({ opacity: 1, y: 0 })
+      iControls.start({ opacity: 1, x: 0 })
     }
   }, [isIntroDone, tControls, iControls, tOnScreen, iOnScreen])
 

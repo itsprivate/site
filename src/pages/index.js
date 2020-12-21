@@ -1,7 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { graphql } from "gatsby"
-
 import GlobalStateProvider from "../context/provider"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -12,8 +11,8 @@ import Interests from "../components/sections/interests"
 import Projects from "../components/sections/projects"
 import Contact from "../components/sections/contact"
 import { seoTitleSuffix } from "../../config"
-
-const IndexPage = ({ data }) => {
+import Sites from "../components/sections/sites"
+const IndexPage = ({ data, pageContext }) => {
   const { frontmatter } = data.index.edges[0].node
   const { seoTitle, useSeoTitleSuffix, useSplashScreen } = frontmatter
 
@@ -36,11 +35,12 @@ const IndexPage = ({ data }) => {
           }
         />
         <Hero content={data.hero.edges} />
+        <Sites content={data.allSubSite.edges}></Sites>
         {/* Articles is populated via Medium RSS Feed fetch */}
-        <Articles />
+        {/* <Articles /> */}
         <About content={data.about.edges} />
         <Interests content={data.interests.edges} />
-        <Projects content={data.projects.edges} />
+        {/* <Projects content={data.projects.edges} pageContext={pageContext} /> */}
         <Contact content={data.contact.edges} />
       </Layout>
     </GlobalStateProvider>
@@ -49,13 +49,20 @@ const IndexPage = ({ data }) => {
 
 IndexPage.propTypes = {
   data: PropTypes.object.isRequired,
+  pageContext: PropTypes.object.isRequired,
 }
 
 export default IndexPage
 
 export const pageQuery = graphql`
-  {
-    index: allMdx(filter: { fileAbsolutePath: { regex: "/index/index/" } }) {
+  query($locale: String!) {
+    index: allMdx(
+      sort: { fields: fields___isDefault, order: ASC }
+      filter: {
+        fields: { locale: { in: [$locale, "zh"] } }
+        fileAbsolutePath: { regex: "/index/index/" }
+      }
+    ) {
       edges {
         node {
           frontmatter {
@@ -66,7 +73,13 @@ export const pageQuery = graphql`
         }
       }
     }
-    hero: allMdx(filter: { fileAbsolutePath: { regex: "/index/hero/" } }) {
+    hero: allMdx(
+      sort: { fields: fields___isDefault, order: ASC }
+      filter: {
+        fields: { locale: { in: [$locale, "zh"] } }
+        fileAbsolutePath: { regex: "/index/hero/" }
+      }
+    ) {
       edges {
         node {
           body
@@ -86,7 +99,13 @@ export const pageQuery = graphql`
         }
       }
     }
-    about: allMdx(filter: { fileAbsolutePath: { regex: "/index/about/" } }) {
+    about: allMdx(
+      sort: { fields: fields___isDefault, order: ASC }
+      filter: {
+        fields: { locale: { in: [$locale, "zh"] } }
+        fileAbsolutePath: { regex: "/index/about/" }
+      }
+    ) {
       edges {
         node {
           body
@@ -103,14 +122,36 @@ export const pageQuery = graphql`
         }
       }
     }
+    allSubSite(filter: { locale: { eq: $locale } }) {
+      edges {
+        node {
+          id
+          title
+          url
+          description
+          locale
+          icon {
+            childImageSharp {
+              fixed(width: 30, height: 30, quality: 90) {
+                ...GatsbyImageSharpFixed
+              }
+            }
+          }
+        }
+      }
+    }
     interests: allMdx(
-      filter: { fileAbsolutePath: { regex: "/index/interests/" } }
+      sort: { fields: fields___isDefault, order: ASC }
+      filter: {
+        fields: { locale: { in: [$locale, "zh"] } }
+        fileAbsolutePath: { regex: "/index/interests/" }
+      }
     ) {
       edges {
         node {
           exports {
-            shownItems
             interests {
+              url
               name
               icon {
                 childImageSharp {
@@ -129,6 +170,7 @@ export const pageQuery = graphql`
     }
     projects: allMdx(
       filter: {
+        fields: { locale: { in: [$locale, "zh"] } }
         fileAbsolutePath: { regex: "/index/projects/" }
         frontmatter: { visible: { eq: true } }
       }
@@ -136,6 +178,9 @@ export const pageQuery = graphql`
     ) {
       edges {
         node {
+          fields {
+            locale
+          }
           body
           frontmatter {
             title
@@ -160,7 +205,11 @@ export const pageQuery = graphql`
       }
     }
     contact: allMdx(
-      filter: { fileAbsolutePath: { regex: "/index/contact/" } }
+      sort: { fields: fields___isDefault, order: ASC }
+      filter: {
+        fields: { locale: { in: [$locale, "zh"] } }
+        fileAbsolutePath: { regex: "/index/contact/" }
+      }
     ) {
       edges {
         node {
