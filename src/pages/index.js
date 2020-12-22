@@ -13,7 +13,7 @@ import Contact from "../components/sections/contact"
 import { seoTitleSuffix } from "../../config"
 import Sites from "../components/sections/sites"
 const IndexPage = ({ data, pageContext }) => {
-  const { avatar } = data
+  const { cover: avatar } = data
   const { frontmatter } = data.index.edges[0].node
   const { seoTitle, useSeoTitleSuffix, useSplashScreen } = frontmatter
 
@@ -63,9 +63,9 @@ export default IndexPage
 
 export const pageQuery = graphql`
   query($locale: String!) {
-    avatar: file(absolutePath: { regex: "/favicon.(jpeg|jpg|gif|png)/" }) {
+    cover: file(absolutePath: { regex: "/cover.(jpeg|jpg|gif|png)/" }) {
       childImageSharp {
-        fixed(width: 256, height: 256) {
+        fixed(width: 876, height: 438) {
           ...GatsbyImageSharpFixed
         }
       }

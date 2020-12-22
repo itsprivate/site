@@ -89,7 +89,7 @@ const SEO = ({ description, meta, title, imageSource, imageAlt }) => {
         },
         {
           name: `twitter:card`,
-          content: `summary`,
+          content: `summary_large_image`,
         },
         {
           name: `og:image`,
