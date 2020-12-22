@@ -6,13 +6,14 @@ module.exports = {
   siteShortTitle: "Buzzing", // Used as logo text in header, footer, and splash screen
   siteDescription: "用中文浏览国外社交媒体里的热门讨论",
   siteUrl: "https://www.buzzing.cc",
+  keywords: ["Buzzing", "reddit", "国外社交媒体", "外网热议"],
   siteIcon: "content/favicon.png", // Relative to gatsby-config file
   seoTitleSuffix: "Buzzing", // SEO title syntax will be e.g. "Imprint - {seoTitleSuffix}"
   localize: [
     {
       locale: "en",
-      siteDescription:
-        "A modern one-page portfolio with a clean yet expressive design.",
+      description: "See hot discussions in your native language",
+      keywords: ["Buzzing", "reddit", "social media", "native language"],
     },
   ],
   // -- THEME SETTINGS -----

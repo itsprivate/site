@@ -13,6 +13,7 @@ import Contact from "../components/sections/contact"
 import { seoTitleSuffix } from "../../config"
 import Sites from "../components/sections/sites"
 const IndexPage = ({ data, pageContext }) => {
+  const { avatar } = data
   const { frontmatter } = data.index.edges[0].node
   const { seoTitle, useSeoTitleSuffix, useSplashScreen } = frontmatter
 
@@ -23,11 +24,17 @@ const IndexPage = ({ data, pageContext }) => {
     // will check the user's preferences and switch to dark mode if needed
     darkMode: false,
   }
-
+  const avatarImage =
+    avatar &&
+    avatar.childImageSharp &&
+    avatar.childImageSharp.fixed &&
+    avatar.childImageSharp.fixed.src
   return (
     <GlobalStateProvider initialState={globalState}>
       <Layout pageContext={pageContext}>
         <SEO
+          imageSource={avatarImage}
+          imageAlt={seoTitle}
           title={
             useSeoTitleSuffix
               ? `${seoTitle} - ${seoTitleSuffix}`
@@ -56,6 +63,13 @@ export default IndexPage
 
 export const pageQuery = graphql`
   query($locale: String!) {
+    avatar: file(absolutePath: { regex: "/favicon.(jpeg|jpg|gif|png)/" }) {
+      childImageSharp {
+        fixed(width: 48, height: 48) {
+          ...GatsbyImageSharpFixed
+        }
+      }
+    }
     index: allMdx(
       sort: { fields: fields___isDefault, order: ASC }
       filter: {

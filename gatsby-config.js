@@ -6,6 +6,8 @@ const {
   siteIcon,
   siteUrl,
   colors,
+  keywords,
+  localize,
 } = require(`./config`)
 
 module.exports = {
@@ -14,6 +16,8 @@ module.exports = {
     title: siteTitle,
     description: siteDescription,
     siteUrl: siteUrl,
+    keywords,
+    localize,
   },
   plugins: [
     {

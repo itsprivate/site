@@ -1,12 +1,12 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Helmet from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql, withPrefix } from "gatsby"
 import { useLocalization } from "gatsby-theme-i18n"
-
+import path from "path"
 import { lightTheme } from "../styles/theme"
-
-const SEO = ({ description, meta, title }) => {
+import { t } from "../utils"
+const SEO = ({ description, meta, title, imageSource, imageAlt }) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -14,15 +14,47 @@ const SEO = ({ description, meta, title }) => {
           siteMetadata {
             title
             description
+            siteUrl
             author
+            keywords
+            localize {
+              locale
+              keywords
+              description
+            }
           }
         }
       }
     `
   )
   const { locale } = useLocalization()
-  const metaDescription = description || site.siteMetadata.description
+  const siteUrl = site.siteMetadata.siteUrl
+  const keywords = t(
+    "keywords",
+    site.siteMetadata.localize,
+    site.siteMetadata.keywords || [],
+    locale
+  )
+  const siteDescription = t(
+    "description",
+    site.siteMetadata.localize,
+    site.siteMetadata.description,
+    locale
+  )
+  const metaDescription = description || siteDescription
 
+  const getImagePath = imageURI => {
+    if (
+      !imageURI.match(
+        `(https?|ftp|file)://[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]`
+      )
+    )
+      return path.join(siteUrl, withPrefix(imageURI))
+
+    return imageURI
+  }
+  const image = imageSource ? getImagePath(imageSource) : null
+  const imageAltText = imageAlt || metaDescription
   return (
     <Helmet
       htmlAttributes={{
@@ -34,6 +66,10 @@ const SEO = ({ description, meta, title }) => {
         {
           name: `description`,
           content: metaDescription,
+        },
+        {
+          name: `keywords`,
+          content: keywords.join(`,`),
         },
         {
           property: `og:title`,
@@ -54,6 +90,22 @@ const SEO = ({ description, meta, title }) => {
         {
           name: `twitter:card`,
           content: `summary`,
+        },
+        {
+          name: `og:image`,
+          content: image,
+        },
+        {
+          name: `og:image:alt`,
+          content: imageAltText,
+        },
+        {
+          name: `twitter:image`,
+          content: image,
+        },
+        {
+          name: `twitter:image:alt`,
+          content: imageAltText,
         },
         {
           name: `twitter:creator`,
@@ -85,6 +137,8 @@ SEO.propTypes = {
   description: PropTypes.string,
   meta: PropTypes.array,
   lang: PropTypes.string,
+  imageAlt: PropTypes.string,
+  imageSource: PropTypes.string,
 }
 
 SEO.defaultProps = {
