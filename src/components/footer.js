@@ -1,13 +1,14 @@
 import React, { useContext } from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
-
+import PropTypes from "prop-types"
 import ContentWrapper from "../styles/contentWrapper"
 import Context from "../context"
 import Logo from "./logo"
 import { lightTheme, darkTheme } from "../styles/theme"
 import { footerLinks } from "../../config"
-
+import { Trans } from "react-i18next"
+import Language from "./language"
 const StyledFooter = styled.footer`
   width: 100%;
   height: ${({ theme }) => theme.footerHeight};
@@ -25,11 +26,13 @@ const StyledContentWrapper = styled(ContentWrapper)`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     .footer-links {
       /* Adjust width of links wrapper accordingly */
       width: 10rem;
       display: flex;
       justify-content: space-between;
+      flex-wrap: wrap;
       @media (min-width: ${({ theme }) => theme.breakpoints.sm}) {
         width: 15rem;
       }
@@ -46,7 +49,7 @@ const StyledLink = styled(Link)`
   letter-spacing: 1px;
 `
 
-const Footer = () => {
+const Footer = ({ pageContext }) => {
   const { darkMode } = useContext(Context).state
   return (
     <StyledFooter darkMode={darkMode}>
@@ -59,10 +62,11 @@ const Footer = () => {
             }
           />
         </Link>
+        <Language pageContext={pageContext}></Language>
         <div className="footer-links" data-testid="footer-links">
           {footerLinks.map(({ name, url }, key) => (
             <StyledLink key={key} to={url} $darkMode={darkMode}>
-              {name}
+              <Trans>{name}</Trans>
             </StyledLink>
           ))}
         </div>
@@ -70,5 +74,7 @@ const Footer = () => {
     </StyledFooter>
   )
 }
-
+Footer.propTypes = {
+  pageContext: PropTypes.object,
+}
 export default Footer

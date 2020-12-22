@@ -2,10 +2,11 @@ import React from "react"
 import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
+import { useLocalization } from "gatsby-theme-i18n"
 
 import { lightTheme } from "../styles/theme"
 
-const SEO = ({ description, lang, meta, title }) => {
+const SEO = ({ description, meta, title }) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -19,13 +20,13 @@ const SEO = ({ description, lang, meta, title }) => {
       }
     `
   )
-
+  const { locale } = useLocalization()
   const metaDescription = description || site.siteMetadata.description
 
   return (
     <Helmet
       htmlAttributes={{
-        lang,
+        lang: locale,
       }}
       title={title}
       titleTemplate={`%s`}

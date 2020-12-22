@@ -85,7 +85,7 @@ const About = ({ content }) => {
   }, [isIntroDone, tControls, iControls, tOnScreen, iOnScreen])
 
   return (
-    <StyledSection id="about">
+    <StyledSection id="usecase">
       <StyledContentWrapper>
         <motion.div
           className="inner-wrapper"

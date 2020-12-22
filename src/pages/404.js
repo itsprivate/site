@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-
+import PropTypes from "prop-types"
 import GlobalStateProvider from "../context/provider"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -28,7 +28,7 @@ const StyledContentWrapper = styled(ContentWrapper)`
   }
 `
 
-const NotFoundPage = () => {
+const NotFoundPage = ({ pageContext }) => {
   const globalState = {
     isIntroDone: true,
     darkMode: false,
@@ -36,7 +36,7 @@ const NotFoundPage = () => {
 
   return (
     <GlobalStateProvider initialState={globalState}>
-      <Layout>
+      <Layout pageContext={pageContext}>
         <SEO
           title="404: Not found"
           meta={[{ name: "robots", content: "noindex" }]}
@@ -51,5 +51,7 @@ const NotFoundPage = () => {
     </GlobalStateProvider>
   )
 }
-
+NotFoundPage.propTypes = {
+  pageContext: PropTypes.object.isRequired,
+}
 export default NotFoundPage

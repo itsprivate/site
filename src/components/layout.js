@@ -24,7 +24,7 @@ const StyledLayoutWrapper = styled.div`
   grid-template-columns: 100%;
 `
 
-const Layout = ({ children }) => {
+const Layout = ({ children, pageContext }) => {
   // Enables dark mode if the user's OS has an active dark theme
   const darkModeEnabled = useDarkMode()
   const theme = darkModeEnabled ? darkTheme : lightTheme
@@ -35,7 +35,7 @@ const Layout = ({ children }) => {
         <GlobalStyle />
         <Header />
         <main id="main-content">{children}</main>
-        <Footer />
+        <Footer pageContext={pageContext} />
       </ThemeProvider>
     </StyledLayoutWrapper>
   )
@@ -43,6 +43,7 @@ const Layout = ({ children }) => {
 
 Layout.propTypes = {
   children: PropTypes.any,
+  pageContext: PropTypes.object,
 }
 
 export default Layout

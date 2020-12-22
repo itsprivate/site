@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import { Link } from "gatsby"
-
+import { Trans } from "react-i18next"
 import { navLinks } from "../../config"
 
 const StyledNav = styled.nav`
@@ -61,12 +61,12 @@ const Navbar = () => {
       {menu.map(({ name, url }, key) => {
         return (
           <Link className="nav-link" key={key} to={url}>
-            {name}
+            <Trans>{name}</Trans>
           </Link>
         )
       })}
       <Link className="cta-btn" to={button.url}>
-        {button.name}
+        <Trans>{button.name}</Trans>
       </Link>
     </StyledNav>
   )

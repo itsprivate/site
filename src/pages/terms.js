@@ -39,7 +39,7 @@ const StyledContentWrapper = styled(ContentWrapper)`
   }
 `
 
-const Imprint = ({ data }) => {
+const Imprint = ({ data, pageContext }) => {
   const { body, frontmatter } = data.imprint.edges[0].node
   const { title, seoTitle, useSeoTitleSuffix, useSplashScreen } = frontmatter
 
@@ -71,6 +71,7 @@ const Imprint = ({ data }) => {
 }
 
 Imprint.propTypes = {
+  pageContext: PropTypes.object,
   data: PropTypes.shape({
     imprint: PropTypes.shape({
       edges: PropTypes.arrayOf(

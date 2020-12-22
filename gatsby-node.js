@@ -2,6 +2,7 @@ const axios = require("axios")
 const path = require("path")
 const i18nConfig = require("./i18n/config.json")
 const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
+const config = require("./config")
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions
   createTypes(`
@@ -34,21 +35,13 @@ exports.createResolvers = ({ createResolvers }) => {
 exports.sourceNodes = async ({
   actions,
   createContentDigest,
-  node,
   createNodeId,
-  getNode,
   store,
   cache,
-  reporter,
 }) => {
-  const { createNode, createParentChildLink, createNodeField } = actions
+  const { createNode } = actions
 
-  const sites = [
-    "https://reddit.buzzing.cc",
-    "https://stocks.buzzing.cc",
-    "https://ph.buzzing.cc",
-    "https://hn.buzzing.cc",
-  ]
+  const sites = config.sites
   const apis = []
   sites.forEach(site => {
     i18nConfig.forEach(i18n => {

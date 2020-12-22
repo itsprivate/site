@@ -60,44 +60,31 @@ module.exports = {
   // Medium, GitHub, LinkedIn, XING, Behance
   socialMedia: [
     {
-      name: "Linkedin",
-      url: "https://www.linkedin.com/in/konstantin-muenster/",
-    },
-    {
-      name: "Medium",
-      url: "https://konstantinmuenster.medium.com/",
-    },
-    {
-      name: "Github",
-      url:
-        "https://github.com/konstantinmuenster/gatsby-starter-portfolio-minimal",
-    },
-    {
-      name: "Behance",
-      url: "https://www.behance.net/konstanmnster",
+      name: "Twitter",
+      url: "https://twitter.com/buzzingcc",
     },
   ],
   sites: [
-    {
-      name: "",
-      description: "",
-    },
+    "https://reddit.buzzing.cc",
+    "https://stocks.buzzing.cc",
+    "https://ph.buzzing.cc",
+    "https://hn.buzzing.cc",
   ],
 
   //-- NAVIGATION SETTINGS -----
   navLinks: {
     menu: [
       {
-        name: "Articles",
-        url: "/#articles",
+        name: "Subsites",
+        url: "/#subsites",
       },
       {
-        name: "About Me",
-        url: "/#about",
+        name: "Use Case",
+        url: "/#usecase",
       },
       {
-        name: "Features",
-        url: "/#projects",
+        name: "Sources",
+        url: "/#sources",
       },
     ],
     button: {
@@ -111,8 +98,8 @@ module.exports = {
       url: "/privacy",
     },
     {
-      name: "Imprint",
-      url: "/imprint",
+      name: "Terms of Service",
+      url: "/terms",
     },
   ],
 }

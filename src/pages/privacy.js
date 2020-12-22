@@ -39,7 +39,7 @@ const StyledContentWrapper = styled(ContentWrapper)`
   }
 `
 
-const Privacy = ({ data }) => {
+const Privacy = ({ data, pageContext }) => {
   const { body, frontmatter } = data.privacy.edges[0].node
   const { title, seoTitle, useSeoTitleSuffix, useSplashScreen } = frontmatter
 
@@ -50,7 +50,7 @@ const Privacy = ({ data }) => {
 
   return (
     <GlobalStateProvider initialState={globalState}>
-      <Layout>
+      <Layout pageContext={pageContext}>
         <SEO
           title={
             useSeoTitleSuffix
@@ -71,6 +71,7 @@ const Privacy = ({ data }) => {
 }
 
 Privacy.propTypes = {
+  pageContext: PropTypes.object,
   data: PropTypes.shape({
     privacy: PropTypes.shape({
       edges: PropTypes.arrayOf(

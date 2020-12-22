@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
 import { Link } from "gatsby"
-
+import { Trans } from "react-i18next"
 import { navLinks } from "../../config"
 
 const StyledBackdrop = styled.div`
@@ -85,7 +85,7 @@ const Sidebar = ({ open, setOpen }) => {
               to={url}
               onClick={() => setOpen(!open)}
             >
-              {name}
+              <Trans>{name}</Trans>
             </Link>
           ))}
           <Link
@@ -93,7 +93,7 @@ const Sidebar = ({ open, setOpen }) => {
             to={button.url}
             onClick={() => setOpen(!open)}
           >
-            {button.name}
+            <Trans>{button.name}</Trans>
           </Link>
         </StyledNav>
       </StyledContainer>

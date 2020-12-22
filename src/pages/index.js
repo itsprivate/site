@@ -26,7 +26,7 @@ const IndexPage = ({ data, pageContext }) => {
 
   return (
     <GlobalStateProvider initialState={globalState}>
-      <Layout>
+      <Layout pageContext={pageContext}>
         <SEO
           title={
             useSeoTitleSuffix

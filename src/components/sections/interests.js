@@ -7,7 +7,7 @@ import { openChat, detectMobileAndTablet, isSSR } from "../../utils"
 import { useOnScreen } from "../../hooks/"
 import ContentWrapper from "../../styles/contentWrapper"
 import Button from "../../styles/button"
-
+import { Trans } from "react-i18next"
 const StyledSection = styled.section`
   width: 100%;
   height: auto;
@@ -121,6 +121,7 @@ const Interests = ({ content }) => {
             <a
               href={url}
               key={name}
+              title={name}
               className="interest-wrapper"
               target="_blank"
               rel="nofollow noopener noreferrer"
@@ -138,9 +139,11 @@ const Interests = ({ content }) => {
           ))}
         </StyledInterests>
         <StyledNote>
-          <StyledNoteText>Want more sources?</StyledNoteText>{" "}
+          <StyledNoteText>
+            <Trans>Want more sources?</Trans>
+          </StyledNoteText>{" "}
           <StyledNoteButton onClick={handleIssue}>
-            Let us know.
+            <Trans>Let us know.</Trans>
           </StyledNoteButton>
         </StyledNote>
       </StyledContentWrapper>

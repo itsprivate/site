@@ -49,8 +49,9 @@ const StyledContentWrapper = styled(ContentWrapper)`
     }
     .card-header {
       display: flex;
-      align-item: center;
+      align-items: center;
       padding: 0.5rem 0;
+      padding-right: 2rem;
     }
     .icon {
       margin-right: 0.6rem;
@@ -128,13 +129,13 @@ const Sites = ({ content }) => {
   }, [isIntroDone, articlesControls])
   return (
     <StyledSection
-      id="sites"
+      id="subsites"
       initial={{ opacity: 0, y: 20 }}
       animate={articlesControls}
     >
       <StyledContentWrapper>
         <h3 className="section-title">
-          <Trans>Sites</Trans>
+          <Trans>Subsites</Trans>
         </h3>
         <div className="articles">
           {articles.map(item => (
