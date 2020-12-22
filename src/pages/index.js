@@ -65,7 +65,7 @@ export const pageQuery = graphql`
   query($locale: String!) {
     avatar: file(absolutePath: { regex: "/favicon.(jpeg|jpg|gif|png)/" }) {
       childImageSharp {
-        fixed(width: 48, height: 48) {
+        fixed(width: 256, height: 256) {
           ...GatsbyImageSharpFixed
         }
       }
