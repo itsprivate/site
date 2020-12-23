@@ -93,7 +93,7 @@ const SEO = ({ description, meta, title, imageSource, imageAlt }) => {
         },
         {
           name: `og:image`,
-          content: image,
+          content: `https://nypost.com/wp-content/uploads/sites/2/2020/12/Dunkin-Donuts-1.jpg?quality=90&strip=all&w=1200`,
         },
         {
           name: `og:image:alt`,
@@ -101,7 +101,7 @@ const SEO = ({ description, meta, title, imageSource, imageAlt }) => {
         },
         {
           name: `twitter:image`,
-          content: image,
+          content: `https://nypost.com/wp-content/uploads/sites/2/2020/12/Dunkin-Donuts-1.jpg?quality=90&strip=all&w=1200`,
         },
         {
           name: `twitter:image:alt`,
