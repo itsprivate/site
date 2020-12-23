@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql, withPrefix } from "gatsby"
 import { useLocalization } from "gatsby-theme-i18n"
-import path from "path"
+import urlJoin from "url-join"
 import { lightTheme } from "../styles/theme"
 import { t } from "../utils"
 const SEO = ({ description, meta, title, imageSource, imageAlt }) => {
@@ -49,7 +49,7 @@ const SEO = ({ description, meta, title, imageSource, imageAlt }) => {
         `(https?|ftp|file)://[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]`
       )
     )
-      return path.join(siteUrl, withPrefix(imageURI))
+      return urlJoin(siteUrl, withPrefix(imageURI))
 
     return imageURI
   }
@@ -93,7 +93,7 @@ const SEO = ({ description, meta, title, imageSource, imageAlt }) => {
         },
         {
           name: `og:image`,
-          content: `https://nypost.com/wp-content/uploads/sites/2/2020/12/Dunkin-Donuts-1.jpg?quality=90&strip=all&w=1200`,
+          content: image,
         },
         {
           name: `og:image:alt`,
@@ -101,7 +101,7 @@ const SEO = ({ description, meta, title, imageSource, imageAlt }) => {
         },
         {
           name: `twitter:image`,
-          content: `https://nypost.com/wp-content/uploads/sites/2/2020/12/Dunkin-Donuts-1.jpg?quality=90&strip=all&w=1200`,
+          content: image,
         },
         {
           name: `twitter:image:alt`,

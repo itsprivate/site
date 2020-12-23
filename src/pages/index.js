@@ -65,7 +65,7 @@ export const pageQuery = graphql`
   query($locale: String!) {
     cover: file(absolutePath: { regex: "/cover.(jpeg|jpg|gif|png)/" }) {
       childImageSharp {
-        fixed(width: 600, height: 314) {
+        fixed(width: 1200, height: 630) {
           ...GatsbyImageSharpFixed
         }
       }
