@@ -136,7 +136,10 @@ export const pageQuery = graphql`
         }
       }
     }
-    allSubSite(filter: { locale: { eq: $locale } }) {
+    allSubSite(
+      filter: { locale: { eq: $locale } }
+      sort: { order: ASC, fields: index }
+    ) {
       edges {
         node {
           id

@@ -13,6 +13,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       icon: File!
       locale: String!
       url: String!
+      index: Int!
     }
   `)
 }
@@ -60,6 +61,7 @@ exports.sourceNodes = async ({
     const data = results[i]
     const site = sites[Math.floor(i / 3)]
     const node = {
+      index: i,
       id: `${site}${data.start_url}`,
       title: data.name,
       description: data.description,
