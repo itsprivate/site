@@ -70,6 +70,8 @@ module.exports = {
     "https://stocks.buzzing.cc",
     "https://ph.buzzing.cc",
     "https://hn.buzzing.cc",
+    "https://news.buzzing.cc",
+    "https://youtube.buzzing.cc",
     "https://crypto.buzzing.cc",
     "https://changemyview.buzzing.cc",
   ],
