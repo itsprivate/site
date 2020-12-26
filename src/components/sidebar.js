@@ -65,7 +65,7 @@ const StyledNav = styled.nav`
     margin: 1.5rem auto;
     padding: 1rem 1.5rem;
     font-weight: 700;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     border-radius: ${({ theme }) => theme.borderRadius};
     border: 0.125rem solid ${({ theme }) => theme.colors.primary};
     background: ${({ theme }) => theme.colors.background};

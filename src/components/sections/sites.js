@@ -36,7 +36,10 @@ const StyledContentWrapper = styled(ContentWrapper)`
     }
     .articles {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+      @media (min-width: ${({ theme }) => theme.breakpoints.xs}) {
+        grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+      }
       grid-gap: 3rem;
       margin: -2rem 0 0 0;
       padding: 0 2.5rem;

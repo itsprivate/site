@@ -41,7 +41,7 @@ const StyledContentWrapper = styled(ContentWrapper)`
 
 const StyledInterests = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
   grid-gap: 1rem;
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     padding-right: 0;
@@ -56,7 +56,7 @@ const StyledInterests = styled.div`
     }
   }
   .interest {
-    min-width: 15.625rem;
+    min-width: 15rem;
     height: 3rem;
     display: flex;
     justify-content: flex-start;
