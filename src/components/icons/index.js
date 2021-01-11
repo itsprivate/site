@@ -9,6 +9,7 @@ import IconBehance from "./behance"
 import IconExternal from "./external"
 import IconArrowRight from "./arrow-right"
 import Twitter from "./twitter"
+import Telegram from "./telegram"
 // Utility function to grab Icons by name
 const Icon = ({ name, color }) => {
   switch (name.toLowerCase()) {
@@ -28,6 +29,8 @@ const Icon = ({ name, color }) => {
       return <IconArrowRight color={color}></IconArrowRight>
     case "twitter":
       return <Twitter color={color}></Twitter>
+    case "telegram":
+      return <Telegram color={color}></Telegram>
     default:
       return null
   }

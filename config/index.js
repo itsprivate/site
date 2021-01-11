@@ -64,6 +64,10 @@ module.exports = {
       name: "Twitter",
       url: "https://twitter.com/buzzingcc",
     },
+    {
+      name: "Telegram",
+      url: "https://t.me/buzzingcc",
+    },
   ],
   sites: [
     "https://reddit.buzzing.cc",

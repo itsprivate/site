@@ -9,7 +9,7 @@ const Twitter = ({ color }) => {
       viewBox="0 0 400 400"
       style={{
         position: "relative",
-        top: "5px",
+        top: "4px",
         marginRight: 0,
         height: "1.3rem",
         width: "1.3rem",
