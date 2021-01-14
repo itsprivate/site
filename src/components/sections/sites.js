@@ -15,7 +15,9 @@ const StyledSection = motion.custom(styled.section`
   height: auto;
   background: ${({ theme }) => theme.colors.background};
 `)
-
+const StyledImage = styled(Img)`
+  border-radius: 50%;
+`
 const StyledContentWrapper = styled(ContentWrapper)`
   && {
     width: 100%;
@@ -159,7 +161,7 @@ const Sites = ({ content }) => {
                   ></Icon>
                 </div>
                 <div className="card-header">
-                  <Img
+                  <StyledImage
                     className="icon"
                     fixed={item.icon.childImageSharp.fixed}
                   />
