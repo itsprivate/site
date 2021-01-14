@@ -77,6 +77,7 @@ module.exports = {
     "https://news.buzzing.cc",
     "https://youtube.buzzing.cc",
     "https://crypto.buzzing.cc",
+    "https://data.buzzing.cc",
     "https://changemyview.buzzing.cc",
   ],
 
