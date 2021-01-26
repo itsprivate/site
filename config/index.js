@@ -77,10 +77,12 @@ module.exports = {
     "https://news.buzzing.cc",
     "https://ask.buzzing.cc",
     "https://depth.buzzing.cc",
+    "https://books.buzzing.cc",
+    "https://economist.buzzing.cc",
     "https://know.buzzing.cc",
+    "https://data.buzzing.cc",
     "https://youtube.buzzing.cc",
     "https://crypto.buzzing.cc",
-    "https://data.buzzing.cc",
     "https://changemyview.buzzing.cc",
   ],
 
