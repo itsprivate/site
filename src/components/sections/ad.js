@@ -87,33 +87,6 @@ const StyledNoteButton = styled.a`
   color: ${({ theme }) => theme.colors.primary};
 `
 const Interests = ({ content }) => {
-  const { exports, frontmatter } = content[0].node
-  const { interests } = exports
-
-  const ref = useRef()
-  const onScreen = useOnScreen(ref)
-
-  const iControls = useAnimation()
-  const bControls = useAnimation()
-
-  useEffect(() => {
-    const sequence = async () => {
-      // i receives the value of the custom prop - can be used to stagger
-      // the animation of each "interest" element
-      await iControls.start(i => ({
-        opacity: 1,
-        scaleY: 1,
-        transition: { delay: i * 0.1 },
-      }))
-      await bControls.start({ opacity: 1, scaleY: 1 })
-    }
-    sequence()
-  }, [iControls, bControls])
-
-  const handleIssue = () => {
-    openChat()
-  }
-
   return (
     <StyledSection id="sources">
       <StyledContentWrapper>
