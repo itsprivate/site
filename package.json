@@ -36,6 +36,7 @@
     "path": "^0.12.7",
     "prop-types": "^15.7.2",
     "react": "^16.14.0",
+    "react-adsense": "^0.1.0",
     "react-dom": "^16.14.0",
     "react-helmet": "^6.1.0",
     "react-i18next": "^11.8.4",

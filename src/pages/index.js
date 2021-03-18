@@ -1,6 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { graphql } from "gatsby"
+import AdSense from "react-adsense"
 import GlobalStateProvider from "../context/provider"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -43,6 +44,13 @@ const IndexPage = ({ data, pageContext }) => {
         />
         <Hero content={data.hero.edges} />
         <Sites content={data.allSubSite.edges}></Sites>
+        <AdSense.Google
+          client="ca-pub-5211209136530011"
+          slot="9469977903"
+          style={{ display: "block" }}
+          format="auto"
+          responsive="true"
+        />
         {/* Articles is populated via Medium RSS Feed fetch */}
         {/* <Articles /> */}
         <About content={data.about.edges} />
