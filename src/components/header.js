@@ -3,6 +3,7 @@ import { Link } from "gatsby"
 import Helmet from "react-helmet"
 import styled from "styled-components"
 import { motion, useAnimation } from "framer-motion"
+import PropTypes from "prop-types"
 
 import Context from "../context"
 import { detectMobileAndTablet, isSSR } from "../utils/"
@@ -72,7 +73,7 @@ const StyledBurger = styled.button`
   }
 `
 
-const Header = () => {
+const Header = ({ pageContext }) => {
   const { isIntroDone } = useContext(Context).state
   const [open, setOpen] = useState(false)
   const [windowWidth, setWindowWidth] = useState(0)
@@ -114,7 +115,7 @@ const Header = () => {
       </>
     )
   } else {
-    navigation = <Navbar />
+    navigation = <Navbar pageContext={pageContext} />
   }
 
   return (
@@ -130,5 +131,7 @@ const Header = () => {
     </StyledHeader>
   )
 }
-
+Header.propTypes = {
+  pageContext: PropTypes.object,
+}
 export default Header

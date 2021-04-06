@@ -54,12 +54,18 @@ exports.sourceNodes = async ({
     })
   })
   const promises = apis.map(api => {
-    return axios(api).then(result => result.data)
+    return axios(api)
+      .then(result => result.data)
+      .catch(e => {
+        console.error(`api: ${api} error`)
+        console.error(e)
+        throw e
+      })
   })
   const results = await Promise.all(promises)
   for (let i = 0; i < results.length; i++) {
     const data = results[i]
-    const site = sites[Math.floor(i / 3)]
+    const site = sites[Math.floor(i / i18nConfig.length)]
     const node = {
       index: i,
       id: `${site}${data.start_url}`,
@@ -77,6 +83,10 @@ exports.sourceNodes = async ({
       createNodeId,
       cache,
       store,
+    }).catch(e => {
+      console.error(`iconUrl: ${site} error`)
+      console.error(e)
+      throw e
     })
     // if the file was created, attach the new node to the parent node
     if (remoteFileNode) {

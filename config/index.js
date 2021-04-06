@@ -93,20 +93,20 @@ module.exports = {
     menu: [
       {
         name: "Subsites",
-        url: "/#subsites",
+        url: "#subsites",
       },
       {
         name: "Use Case",
-        url: "/#usecase",
+        url: "#usecase",
       },
       {
-        name: "Sources",
-        url: "/#sources",
+        name: "Contact",
+        url: "#contact",
       },
     ],
     button: {
       name: "Contact",
-      url: "/#contact",
+      url: "#contact",
     },
   },
   footerLinks: [

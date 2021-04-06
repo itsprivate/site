@@ -9,6 +9,7 @@ import { lightTheme, darkTheme } from "../styles/theme"
 import { footerLinks } from "../../config"
 import { Trans } from "react-i18next"
 import Language from "./language"
+
 const StyledFooter = styled.footer`
   width: 100%;
   height: ${({ theme }) => theme.footerHeight};
@@ -63,6 +64,7 @@ const Footer = ({ pageContext }) => {
           />
         </Link>
         <Language pageContext={pageContext}></Language>
+
         <div className="footer-links" data-testid="footer-links">
           {footerLinks.map(({ name, url }, key) => (
             <StyledLink key={key} to={url} $darkMode={darkMode}>

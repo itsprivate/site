@@ -33,7 +33,7 @@ const Layout = ({ children, pageContext }) => {
     <StyledLayoutWrapper>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <Header />
+        <Header pageContext={pageContext} />
         <main id="main-content">{children}</main>
         <Footer pageContext={pageContext} />
       </ThemeProvider>

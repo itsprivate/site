@@ -88,13 +88,13 @@ const Sidebar = ({ open, setOpen }) => {
               <Trans>{name}</Trans>
             </Link>
           ))}
-          <Link
+          {/* <Link
             className="cta-btn"
             to={button.url}
             onClick={() => setOpen(!open)}
           >
             <Trans>{button.name}</Trans>
-          </Link>
+          </Link> */}
         </StyledNav>
       </StyledContainer>
       <StyledBackdrop open={open} />

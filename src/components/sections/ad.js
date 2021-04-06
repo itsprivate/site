@@ -86,7 +86,7 @@ const StyledNoteText = styled.span`
 const StyledNoteButton = styled.a`
   color: ${({ theme }) => theme.colors.primary};
 `
-const Interests = ({ content }) => {
+const Interests = () => {
   return (
     <StyledSection id="sources">
       <StyledContentWrapper>
@@ -102,17 +102,6 @@ const Interests = ({ content }) => {
   )
 }
 
-Interests.propTypes = {
-  content: PropTypes.arrayOf(
-    PropTypes.shape({
-      node: PropTypes.shape({
-        exports: PropTypes.shape({
-          interests: PropTypes.array.isRequired,
-        }).isRequired,
-        frontmatter: PropTypes.object.isRequired,
-      }).isRequired,
-    }).isRequired
-  ).isRequired,
-}
+Interests.propTypes = {}
 
 export default Interests

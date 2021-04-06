@@ -3,6 +3,8 @@ import styled from "styled-components"
 import { Link } from "gatsby"
 import { Trans } from "react-i18next"
 import { navLinks } from "../../config"
+import Language from "./language"
+import PropTypes from "prop-types"
 
 const StyledNav = styled.nav`
   display: none;
@@ -54,7 +56,7 @@ const StyledNav = styled.nav`
   }
 `
 
-const Navbar = () => {
+const Navbar = ({ pageContext }) => {
   const { menu, button } = navLinks
   return (
     <StyledNav>
@@ -65,11 +67,15 @@ const Navbar = () => {
           </Link>
         )
       })}
-      <Link className="cta-btn" to={button.url}>
+      <Language pageContext={pageContext}></Language>
+
+      {/* <Link className="cta-btn" to={button.url}>
         <Trans>{button.name}</Trans>
-      </Link>
+      </Link> */}
     </StyledNav>
   )
 }
-
+Navbar.propTypes = {
+  pageContext: PropTypes.object,
+}
 export default Navbar
