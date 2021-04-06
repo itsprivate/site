@@ -15,6 +15,16 @@ module.exports = {
       description: "See hot discussions in your native language",
       keywords: ["Buzzing", "reddit", "social media", "native language"],
     },
+    {
+      locale: "zh-Hant",
+      description: "用中文瀏覽國外社交媒體裡的熱門討論",
+      keywords: ["Buzzing", "reddit", "國外社交媒體", "外網熱議"],
+    },
+    {
+      locale: "ja",
+      description: "母国語で熱い議論を見る",
+      keywords: ["Buzzing", "reddit", "ソーシャルメディア", "母国語"],
+    },
   ],
   // -- THEME SETTINGS -----
   colors: {
