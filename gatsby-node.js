@@ -65,6 +65,9 @@ exports.sourceNodes = async ({
   const results = await Promise.all(promises)
   for (let i = 0; i < results.length; i++) {
     const data = results[i]
+    if (!data.name) {
+      console.log("data", data)
+    }
     const site = sites[Math.floor(i / i18nConfig.length)]
     const node = {
       index: i,
