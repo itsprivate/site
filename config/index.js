@@ -92,6 +92,8 @@ module.exports = {
     "https://depth.buzzing.cc",
     "https://100.buzzing.cc",
     "https://books.buzzing.cc",
+    "https://nytimes.buzzing.cc",
+    "https://wsj.buzzing.cc",
     "https://economist.buzzing.cc",
     "https://know.buzzing.cc",
     "https://data.buzzing.cc",
