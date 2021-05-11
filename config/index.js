@@ -81,7 +81,7 @@ module.exports = {
   ],
   sites: [
     "https://reddit.buzzing.cc",
-    "https://stocks.buzzing.cc",
+    "https://stock.buzzing.cc",
     "https://ph.buzzing.cc",
     "https://hn.buzzing.cc",
     "https://news.buzzing.cc",
