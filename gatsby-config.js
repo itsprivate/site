@@ -21,22 +21,6 @@ if (process.env.NODE_ENV !== "development") {
       patterns: ["none/**"],
     },
   })
-  plugins.push({
-    resolve: `gatsby-theme-i18n-react-i18next`,
-    options: {
-      locales: `.cache/gatsby-source-git/itsprivate/ts/RedditTop/i18n/i18next`,
-      i18nextOptions: {
-        debug: process.env.NODE_ENV === "development" ? true : false,
-        ns: ["translation", "translation-tag"],
-        fallbackLng: {
-          "zh-Hant": ["zh", "en"],
-          default: ["en"],
-        },
-        keySeparator: "__::__",
-        nsSeparator: "__::::__",
-      },
-    },
-  })
 }
 plugins = [
   `gatsby-plugin-react-helmet`,
@@ -134,6 +118,24 @@ plugins = [
     },
   },
 ]
+if (process.env.NODE_ENV !== "development") {
+  plugins.push({
+    resolve: `gatsby-theme-i18n-react-i18next`,
+    options: {
+      locales: `.cache/gatsby-source-git/itsprivate/ts/RedditTop/i18n/i18next`,
+      i18nextOptions: {
+        debug: process.env.NODE_ENV === "development" ? true : false,
+        ns: ["translation", "translation-tag"],
+        fallbackLng: {
+          "zh-Hant": ["zh", "en"],
+          default: ["en"],
+        },
+        keySeparator: "__::__",
+        nsSeparator: "__::::__",
+      },
+    },
+  })
+}
 module.exports = {
   siteMetadata: {
     author: author,
