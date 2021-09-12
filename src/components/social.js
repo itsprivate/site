@@ -134,7 +134,7 @@ const Social = ({ width, padding, fontSize, fontWeight, withIcon }) => {
           </StyledSocialProfile>
         )
       })}
-      <div style={{ verticalAlign: "text-bottom" }}>
+      <div>
         <Trans>Or</Trans>...&nbsp;
       </div>
 
