@@ -6,11 +6,12 @@ import Context from "../context"
 import Icon from "./icons"
 import { lightTheme, darkTheme } from "../styles/theme"
 import { socialMedia } from "../../config"
+import { Trans } from "react-i18next"
 
 const StyledSocialWrapper = styled.div`
-  display: grid;
-  /* Calculate columns, depending on how many profiles there are */
-  grid-template-columns: repeat(${({ itemCount }) => itemCount + 1}, auto);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
   justify-content: start;
   justify-items: start;
 
@@ -105,7 +106,7 @@ const Social = ({ width, padding, fontSize, fontWeight, withIcon }) => {
   const { darkMode } = useContext(Context).state
 
   return (
-    <StyledSocialWrapper itemCount={socialMedia.length}>
+    <StyledSocialWrapper itemCount={socialMedia.length + 2}>
       {socialMedia.map(({ name, url }, key) => {
         return (
           <StyledSocialProfile
@@ -133,6 +134,30 @@ const Social = ({ width, padding, fontSize, fontWeight, withIcon }) => {
           </StyledSocialProfile>
         )
       })}
+      <div style={{ verticalAlign: "text-bottom" }}>
+        <Trans>Or</Trans>...&nbsp;
+      </div>
+
+      <StyledSocialProfile
+        href={"https://t.me/joinchat/GVK5UiDwPUAwMjkx"}
+        target="_blank"
+        rel="nofollow noopener noreferrer"
+        aria-label={"Join Telegram Group"}
+        width={width}
+        padding={padding}
+        fontSize={fontSize}
+        fontWeight={fontWeight}
+      >
+        {withIcon ? (
+          <Icon
+            name={"Telegram"}
+            color={
+              darkMode ? darkTheme.colors.primary : lightTheme.colors.primary
+            }
+          />
+        ) : null}
+        <Trans>Join Buzzing Community</Trans>
+      </StyledSocialProfile>
     </StyledSocialWrapper>
   )
 }
