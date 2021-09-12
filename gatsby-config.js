@@ -11,6 +11,8 @@ const {
 } = require(`./config`)
 let plugins = []
 if (process.env.NODE_ENV !== "development") {
+  console.log("push source gatsby-source-git")
+
   plugins.push({
     resolve: `@theowenyoung/gatsby-source-git`,
     options: {
@@ -18,11 +20,11 @@ if (process.env.NODE_ENV !== "development") {
       remote: `https://github.com/itsprivate/ts.git`,
       branch: `main`,
       // Only import the docs folder from a codebase.
-      patterns: ["i18n/**"],
+      patterns: ["none/text.txt"],
     },
   })
 }
-plugins = [
+plugins = plugins.concat([
   `gatsby-plugin-react-helmet`,
   `gatsby-plugin-sitemap`,
   `gatsby-plugin-robots-txt`,
@@ -117,7 +119,7 @@ plugins = [
       ],
     },
   },
-]
+])
 if (process.env.NODE_ENV !== "development") {
   plugins.push({
     resolve: `gatsby-theme-i18n-react-i18next`,
