@@ -18,7 +18,7 @@ if (process.env.NODE_ENV !== "development") {
       remote: `https://github.com/itsprivate/ts.git`,
       branch: `main`,
       // Only import the docs folder from a codebase.
-      patterns: ["none/**"],
+      patterns: ["i18n/**"],
     },
   })
 }
