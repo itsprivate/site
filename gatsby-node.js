@@ -41,37 +41,70 @@ exports.sourceNodes = async ({
   cache,
 }) => {
   const { createNode } = actions
-
   const sites = config.sites
+
   const apis = []
+  const pinResults = i18nConfig.map(i18n => {
+    let name = "Values Community"
+    let description =
+      "Community experiment based on value classification  by Buzzing"
+    if (i18n.code.startsWith("zh")) {
+      name = "价值观社区"
+      description = "由Buzzing运营的基于价值观分类的社区实验"
+    }
+    let site = "https://v.buzzing.cc"
+    return {
+      name,
+      lang: i18n.code,
+      start_url: "/",
+      description,
+      site,
+      icons: [
+        {
+          src: "pictrs/image/yVh5xNMHgn.png",
+        },
+      ],
+    }
+  })
   sites.forEach(site => {
     i18nConfig.forEach(i18n => {
       let apiPath = "/manifest.webmanifest"
       if (i18n.code !== "zh") {
         apiPath = `/manifest_${i18n.code}.webmanifest`
       }
-      apis.push(`${site}${apiPath}`)
+      apis.push({
+        site: site,
+        api: `${site}${apiPath}`,
+      })
     })
   })
   const promises = apis.map(api => {
-    return axios(api)
-      .then(result => result.data)
+    return axios(api.api)
+      .then(result => {
+        return {
+          ...result.data,
+          site: api.site,
+        }
+      })
       .catch(e => {
         console.error(`api: ${api} error`)
         console.error(e)
         throw e
       })
   })
-  const results = await Promise.all(promises)
+
+  let apiResults = await Promise.all(promises)
+  let results = pinResults.concat(apiResults)
+
   for (let i = 0; i < results.length; i++) {
     const data = results[i]
     if (!data.name) {
       console.log("data", data)
     }
-    const site = sites[Math.floor(i / i18nConfig.length)]
+    const site = data.site
     const node = {
       index: i,
-      id: `${site}${data.start_url}`,
+      id: `${data.site}/${data.lang}`,
       title: data.name,
       description: data.description,
       locale: data.lang,
@@ -95,6 +128,7 @@ exports.sourceNodes = async ({
     if (remoteFileNode) {
       node.icon___NODE = remoteFileNode.id
     }
+
     createNode({
       ...node,
       parent: null,
