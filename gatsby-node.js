@@ -44,28 +44,29 @@ exports.sourceNodes = async ({
   const sites = config.sites
 
   const apis = []
-  const pinResults = i18nConfig.map(i18n => {
-    let name = "Values Community"
-    let description =
-      "Community experiment based on value classification  by Buzzing"
-    if (i18n.code.startsWith("zh")) {
-      name = "价值观社区"
-      description = "由Buzzing运营的基于价值观分类的社区实验"
-    }
-    let site = "https://v.buzzing.cc"
-    return {
-      name,
-      lang: i18n.code,
-      start_url: "/",
-      description,
-      site,
-      icons: [
-        {
-          src: "pictrs/image/yVh5xNMHgn.png",
-        },
-      ],
-    }
-  })
+  // const pinResults = i18nConfig.map(i18n => {
+  //   let name = "Values Community"
+  //   let description =
+  //     "Community experiment based on value classification  by Buzzing"
+  //   if (i18n.code.startsWith("zh")) {
+  //     name = "价值观社区"
+  //     description = "由Buzzing运营的基于价值观分类的社区实验"
+  //   }
+  //   let site = "https://v.buzzing.cc"
+  //   return {
+  //     name,
+  //     lang: i18n.code,
+  //     start_url: "/",
+  //     description,
+  //     site,
+  //     icons: [
+  //       {
+  //         src: "pictrs/image/yVh5xNMHgn.png",
+  //       },
+  //     ],
+  //   }
+  // });
+  const pinResults = []
   sites.forEach(site => {
     i18nConfig.forEach(i18n => {
       let apiPath = "/manifest.webmanifest"
