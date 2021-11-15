@@ -52,7 +52,7 @@ exports.sourceNodes = async ({
       name = "如何度过每一天"
       description = "主动思考我该如何度过每一天，由Buzzing运营"
     }
-    let site = "https://d.buzzing.cc/"
+    let site = "https://d.buzzing.cc"
     return {
       name,
       lang: i18n.code,
