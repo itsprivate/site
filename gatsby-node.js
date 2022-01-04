@@ -101,7 +101,11 @@ exports.sourceNodes = async ({
     if (!data.name) {
       console.log("data", data)
     }
+
     const site = data.site
+    if (site === "https://news.buzzing.cc" && data.lang === "zh") {
+      data.name = "国外新闻头条"
+    }
     const node = {
       index: i,
       id: `${data.site}/${data.lang}`,
