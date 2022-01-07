@@ -17,7 +17,7 @@ if (process.env.NODE_ENV !== "development") {
     resolve: `@theowenyoung/gatsby-source-git`,
     options: {
       name: `RedditTop`,
-      remote: `https://github.com/itsprivate/ts.git`,
+      remote: `https://github.com/itsprivate/ts-new.git`,
       branch: `main`,
       // Only import the docs folder from a codebase.
       patterns: ["none/text.txt"],
