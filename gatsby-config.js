@@ -124,7 +124,7 @@ if (process.env.NODE_ENV !== "development") {
   plugins.push({
     resolve: `gatsby-theme-i18n-react-i18next`,
     options: {
-      locales: `.cache/gatsby-source-git/itsprivate/ts/RedditTop/i18n/i18next`,
+      locales: `.cache/gatsby-source-git/itsprivate/ts-new/RedditTop/i18n/i18next`,
       i18nextOptions: {
         debug: process.env.NODE_ENV === "development" ? true : false,
         ns: ["translation", "translation-tag"],

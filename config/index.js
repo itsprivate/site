@@ -73,10 +73,33 @@ module.exports = {
     {
       name: "Twitter",
       url: "https://twitter.com/buzzingcc",
+      nickname: "推特：Buzzing",
+    },
+
+    {
+      name: "Twitter",
+      url: "https://twitter.com/HackerNewsZh",
+      nickname: "Hacker News 中文精选",
+    },
+    {
+      name: "Twitter",
+      url: "https://twitter.com/AskRedditZh",
+      nickname: "问Reddit",
+    },
+    {
+      name: "Twitter",
+      url: "https://twitter.com/NewsBotZh",
+      nickname: "国外新闻Bot",
     },
     {
       name: "Telegram",
       url: "https://t.me/buzzingcc",
+      nickname: "Telegram频道: @Buzzing",
+    },
+    {
+      name: "Telegram",
+      url: "https://t.me/joinchat/GVK5UiDwPUAwMjkx",
+      nickname: "加入Telegram Buzzing讨论群",
     },
   ],
   sites: [

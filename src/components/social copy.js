@@ -102,81 +102,62 @@ const StyledSocialProfile = styled.a`
   }
 `
 
-const AButton = styled.a`
-  display: block;
-  font: normal normal normal 12px/18px "Helvetica Neue", Arial, sans-serif;
-  user-select: none;
-  font-size: 13px;
-  line-height: 26px;
-  white-space: nowrap;
-  text-align: left;
-  outline: 0;
-  text-decoration: none;
-  display: inline-block;
-  vertical-align: top;
-  zoom: 1;
-  position: relative;
-  box-sizing: border-box;
-  background-color: #1d9bf0;
-  color: #fff;
-  font-weight: 500;
-  cursor: pointer;
-  height: 28px;
-  border-radius: 9999px;
-  padding: 1px 12px 1px 12px;
-`
-
 const Social = ({ width, padding, fontSize, fontWeight, withIcon }) => {
   const { darkMode } = useContext(Context).state
 
   return (
     <StyledSocialWrapper itemCount={socialMedia.length + 2}>
-      <h3 className="section-title">社交媒体与群组</h3>
+      {socialMedia.map(({ name, url }, key) => {
+        return (
+          <StyledSocialProfile
+            key={key}
+            href={url}
+            target="_blank"
+            rel="nofollow noopener noreferrer"
+            aria-label={name}
+            width={width}
+            padding={padding}
+            fontSize={fontSize}
+            fontWeight={fontWeight}
+          >
+            {withIcon ? (
+              <Icon
+                name={name}
+                color={
+                  darkMode
+                    ? darkTheme.colors.primary
+                    : lightTheme.colors.primary
+                }
+              />
+            ) : null}{" "}
+            {name}
+          </StyledSocialProfile>
+        )
+      })}
       <div>
-        {socialMedia.map(({ name, nickname, url }, key) => {
-          // if (name === "Twitter") {
-          //   return (
-          //     <AButton
-          //       key={nickname}
-          //       id="follow-button"
-          //       title="Follow Twitter Dev (@TwitterDev) on Twitter"
-          //       href="https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fdeveloper.twitter.com%2F&amp;ref_src=twsrc%5Etfw%7Ctwcamp%5Ebuttonembed%7Ctwterm%5Efollow%7Ctwgr%5ETwitterDev&amp;region=follow_link&amp;screen_name=TwitterDev"
-          //     >
-          //       <i></i>
-          //       <span id="l">
-          //         推特 <b>@</b>
-          //       </span>
-          //     </AButton>
-          //   )
-          // }
-
-          return (
-            <StyledSocialProfile
-              key={key}
-              href={url}
-              target="_blank"
-              rel="nofollow noopener noreferrer"
-              aria-label={name}
-              width={width}
-              padding={padding}
-              fontSize={fontSize}
-              fontWeight={fontWeight}
-            >
-              {withIcon ? (
-                <Icon
-                  name={name}
-                  color={
-                    darkMode
-                      ? darkTheme.colors.primary
-                      : lightTheme.colors.primary
-                  }
-                />
-              ) : null}{" "}
-              {nickname}
-            </StyledSocialProfile>
-          )
-        })}
+        <Trans>Or</Trans>...&nbsp;
       </div>
+
+      <StyledSocialProfile
+        href={"https://t.me/joinchat/GVK5UiDwPUAwMjkx"}
+        target="_blank"
+        rel="nofollow noopener noreferrer"
+        aria-label={"Join Telegram Group"}
+        width={width}
+        padding={padding}
+        fontSize={fontSize}
+        fontWeight={fontWeight}
+      >
+        {withIcon ? (
+          <Icon
+            name={"Telegram"}
+            color={
+              darkMode ? darkTheme.colors.primary : lightTheme.colors.primary
+            }
+          />
+        ) : null}
+        <Trans>Join Buzzing Community</Trans>
+      </StyledSocialProfile>
     </StyledSocialWrapper>
   )
 }
