@@ -79,17 +79,29 @@ exports.sourceNodes = async ({
     })
   })
   const promises = apis.map(api => {
+    console.log("api.api", api.api)
+
     return axios(api.api)
       .then(result => {
+        let lang = result.data.lang
+        if (lang === "zh-Hans") {
+          lang = "zh"
+        }
         return {
           ...result.data,
+          lang,
+          ok: true,
           site: api.site,
         }
       })
       .catch(e => {
-        console.error(`api: ${api} error`)
-        console.error(e)
-        throw e
+        console.error(`api: ${api.api} error`)
+        // console.error(e)
+        // throw e
+        return {
+          ok: false,
+          site: api.site,
+        }
       })
   })
 
@@ -98,14 +110,19 @@ exports.sourceNodes = async ({
 
   for (let i = 0; i < results.length; i++) {
     const data = results[i]
-    if (!data.name) {
-      console.log("data", data)
+    if (!data || data.ok == false || !data.name) {
+      // console.log("data", data)
+      // console.log("data.ok", data.ok)
+
+      continue
     }
 
     const site = data.site
     if (site === "https://news.buzzing.cc" && data.lang === "zh") {
       data.name = "国外新闻头条"
     }
+    // console.log("data.description", data.site, data.lang, data.description)
+
     const node = {
       index: i,
       id: `${data.site}/${data.lang}`,

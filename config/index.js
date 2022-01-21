@@ -110,6 +110,8 @@ module.exports = {
     "https://ask.buzzing.cc",
     "https://stocks.buzzing.cc",
     "https://quora.buzzing.cc",
+    "https://showhn.buzzing.cc",
+    "https://askhn.buzzing.cc",
     "https://sideproject.buzzing.cc",
     "https://dev.buzzing.cc",
     "https://depth.buzzing.cc",
