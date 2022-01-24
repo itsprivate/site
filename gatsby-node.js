@@ -121,6 +121,11 @@ exports.sourceNodes = async ({
     if (site === "https://news.buzzing.cc" && data.lang === "zh") {
       data.name = "国外新闻头条"
     }
+
+    if (site === "https://hackernews.buzzing.cc" && data.lang === "zh") {
+      data.description =
+        "更多的HackerNews帖子，所有出现在HackerNews首页的帖子都会被收录，适合HN热门看不够的同学，比如我"
+    }
     // console.log("data.description", data.site, data.lang, data.description)
 
     const node = {

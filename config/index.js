@@ -124,6 +124,7 @@ module.exports = {
     // "https://data.buzzing.cc",
     // "https://youtube.buzzing.cc",
     "https://crypto.buzzing.cc",
+    "https://hackernews.buzzing.cc",
     // "https://changemyview.buzzing.cc",
   ],
 
